@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Politique de confidentialité – Espace Ouzoud</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f5f7;
+      --surface: #ffffff;
+      --ink: #1d1d1f;
+      --secondary: #6e6e73;
+      --tertiary: #86868b;
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --border: rgba(0,0,0,.08);
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245,245,247,.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -.01em;
+    }
+
+    .nav-date {
+      font-size: .8rem;
+      color: var(--tertiary);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--secondary);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .4rem 1rem;
+      font-size: .8rem;
+      color: var(--tertiary);
+    }
+
+    .hero-meta span { width: 6px; height: 6px; border-radius: 50%; background: #34c759; display: inline-block; }
+
+    /* ── MAIN LAYOUT ── */
+    .wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR TOC ── */
+    .toc {
+      position: sticky;
+      top: 72px;
+    }
+
+    .toc-title {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--tertiary);
+      margin-bottom: .75rem;
+      padding-left: .75rem;
+    }
+
+    .toc ul {
+      list-style: none;
+    }
+
+    .toc ul li a {
+      display: block;
+      font-size: .85rem;
+      color: var(--secondary);
+      text-decoration: none;
+      padding: .4rem .75rem;
+      border-radius: 8px;
+      transition: background .15s, color .15s;
+      line-height: 1.35;
+    }
+
+    .toc ul li a:hover {
+      background: rgba(0,0,0,.05);
+      color: var(--ink);
+    }
+
+    /* ── CONTENT ── */
+    .content { min-width: 0; }
+
+    /* Summary cards row */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem 1.25rem 1rem;
+    }
+
+    .summary-card .icon {
+      font-size: 1.6rem;
+      margin-bottom: .6rem;
+      display: block;
+    }
+
+    .summary-card .label {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--tertiary);
+      margin-bottom: .3rem;
+    }
+
+    .summary-card .value {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    /* Sections */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 2.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .section-header h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin-bottom: .2rem;
+    }
+
+    .section-header .section-sub {
+      font-size: .82rem;
+      color: var(--tertiary);
+    }
+
+    .section p {
+      font-size: .95rem;
+      color: var(--secondary);
+      line-height: 1.7;
+      margin-bottom: .9rem;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    /* Data table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+      margin: .5rem 0 .75rem;
+    }
+
+    .data-table thead tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table th {
+      text-align: left;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--tertiary);
+      padding: .5rem .75rem .6rem;
+    }
+
+    .data-table td {
+      padding: .75rem;
+      color: var(--secondary);
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .data-table td:first-child {
+      font-weight: 500;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    /* Rights list */
+    .rights-list {
+      list-style: none;
+      display: grid;
+      gap: .5rem;
+      margin: .5rem 0 .75rem;
+    }
+
+    .rights-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      padding: .75rem 1rem;
+      background: var(--bg);
+      border-radius: 10px;
+      font-size: .9rem;
+      color: var(--secondary);
+      line-height: 1.45;
+    }
+
+    .rights-list li .ri {
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+
+    /* Contact block */
+    .contact-block {
+      background: var(--ink);
+      border-radius: var(--radius);
+      padding: 2.25rem 2.5rem;
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-block .ct-text h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -.02em;
+      margin-bottom: .35rem;
+    }
+
+    .contact-block .ct-text p {
+      font-size: .88rem;
+      color: rgba(255,255,255,.55);
+      margin: 0;
+    }
+
+    .contact-block a.ct-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      padding: .7rem 1.5rem;
+      border-radius: 100px;
+      white-space: nowrap;
+      transition: background .15s;
+    }
+
+    .contact-block a.ct-btn:hover { background: var(--accent-hover); }
+
+    /* Footer */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: .8rem;
+      color: var(--tertiary);
+      line-height: 1.7;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .wrapper {
+        grid-template-columns: 1fr;
+      }
+      .toc { display: none; }
+      .summary-grid { grid-template-columns: 1fr 1fr; }
+      .hero { padding: 3.5rem 1.5rem 3rem; }
+      .section { padding: 1.5rem; }
+      .contact-block { padding: 1.75rem; flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .summary-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">Espace Ouzoud</a>
+    <span class="nav-date">Dernière mise à jour : 1 juin 2025</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Application mobile</p>
+  <h1>Politique de<br/>confidentialité</h1>
+  <p>Nous accordons la plus grande importance à la protection de vos données personnelles. Ce document explique de manière claire et transparente comment nous les collectons, les utilisons et les protégeons.</p>
+  <div class="hero-meta">
+    <span></span>
+    En vigueur depuis le 1er juin 2025
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <aside class="toc">
+    <p class="toc-title">Sommaire</p>
+    <ul>
+      <li><a href="#collecte">1. Données collectées</a></li>
+      <li><a href="#utilisation">2. Utilisation des données</a></li>
+      <li><a href="#stockage">3. Stockage et sécurité</a></li>
+      <li><a href="#partage">4. Partage des données</a></li>
+      <li><a href="#droits">5. Vos droits</a></li>
+      <li><a href="#mineurs">6. Mineurs</a></li>
+      <li><a href="#modifications">7. Modifications</a></li>
+      <li><a href="#contact">8. Contact</a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- Summary cards -->
+    <div class="summary-grid">
+      <div class="summary-card">
+        <span class="icon">🔒</span>
+        <p class="label">Paiement</p>
+        <p class="value">Aucune donnée bancaire collectée</p>
+      </div>
+      <div class="summary-card">
+        <span class="icon">🚫</span>
+        <p class="label">Publicité</p>
+        <p class="value">Données non vendues ni partagées</p>
+      </div>
+      <div class="summary-card">
+        <span class="icon">✉️</span>
+        <p class="label">Contact</p>
+        <p class="value">espace.ouzoud@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- 1. Données collectées -->
+    <div class="section" id="collecte">
+      <div class="section-header">
+        <div class="section-icon">📋</div>
+        <div>
+          <h2>Données collectées</h2>
+          <p class="section-sub">Informations que vous nous fournissez lors de l'inscription et de la commande</p>
+        </div>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Donnée</th>
+            <th>Pourquoi nous la collectons</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Nom complet</td>
+            <td>Identifier votre compte et personnaliser votre expérience</td>
+          </tr>
+          <tr>
+            <td>Adresse e-mail</td>
+            <td>Créer votre compte et vous envoyer les confirmations de commande</td>
+          </tr>
+          <tr>
+            <td>Numéro de téléphone</td>
+            <td>Vous contacter en cas de question relative à votre livraison</td>
+          </tr>
+          <tr>
+            <td>Adresse de livraison</td>
+            <td>Acheminer votre commande au bon endroit</td>
+          </tr>
+          <tr>
+            <td>Historique de commandes</td>
+            <td>Afficher vos commandes passées dans l'application</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Nous ne collectons <strong>aucune donnée bancaire ou de paiement</strong>. Tous les règlements s'effectuent en espèces ou par terminal de paiement (TPE) à la livraison.</p>
+    </div>
+
+    <!-- 2. Utilisation -->
+    <div class="section" id="utilisation">
+      <div class="section-header">
+        <div class="section-icon">⚙️</div>
+        <div>
+          <h2>Utilisation des données</h2>
+          <p class="section-sub">Comment nous utilisons vos informations personnelles</p>
+        </div>
+      </div>
+      <p>Vos données sont utilisées exclusivement dans le cadre de la fourniture de notre service de commande et de livraison :</p>
+      <ul class="rights-list">
+        <li><span class="ri">🛵</span> Traitement et livraison de vos commandes</li>
+        <li><span class="ri">💬</span> Communication concernant le statut de votre commande</li>
+        <li><span class="ri">🔧</span> Amélioration continue de l'application et de nos services</li>
+        <li><span class="ri">🎧</span> Réponse à vos demandes d'assistance</li>
+      </ul>
+      <p>Vos données ne sont <strong>jamais utilisées à des fins publicitaires</strong> et ne sont <strong>pas cédées à des tiers</strong> à des fins commerciales.</p>
+    </div>
+
+    <!-- 3. Stockage -->
+    <div class="section" id="stockage">
+      <div class="section-header">
+        <div class="section-icon">🗄️</div>
+        <div>
+          <h2>Stockage et sécurité</h2>
+          <p class="section-sub">Comment vos données sont protégées</p>
+        </div>
+      </div>
+      <p>Vos données sont hébergées de manière sécurisée sur l'infrastructure <strong>Supabase</strong>, qui applique des mesures de sécurité conformes aux standards de l'industrie, notamment le chiffrement des données en transit (TLS) et au repos.</p>
+      <p>Nous conservons vos données uniquement le temps nécessaire à la fourniture de nos services ou selon les obligations légales en vigueur. Vous pouvez à tout moment demander la suppression de votre compte et de vos données.</p>
+    </div>
+
+    <!-- 4. Partage -->
+    <div class="section" id="partage">
+      <div class="section-header">
+        <div class="section-icon">🤝</div>
+        <div>
+          <h2>Partage des données</h2>
+          <p class="section-sub">Avec qui vos informations peuvent être partagées</p>
+        </div>
+      </div>
+      <p>Nous ne vendons, ne louons et ne partageons pas vos données personnelles avec des tiers à des fins commerciales ou marketing.</p>
+      <p>Vos données peuvent être transmises uniquement dans les cas suivants :</p>
+      <ul class="rights-list">
+        <li><span class="ri">⚖️</span> Lorsque la loi l'exige ou dans le cadre d'une procédure légale</li>
+        <li><span class="ri">🛡️</span> Pour protéger les droits, la propriété ou la sécurité d'Espace Ouzoud ou de ses utilisateurs</li>
+        <li><span class="ri">🔌</span> À nos prestataires techniques (ex. hébergement) uniquement dans le cadre de la fourniture du service, et sous accord de confidentialité</li>
+      </ul>
+    </div>
+
+    <!-- 5. Droits -->
+    <div class="section" id="droits">
+      <div class="section-header">
+        <div class="section-icon">✅</div>
+        <div>
+          <h2>Vos droits</h2>
+          <p class="section-sub">Contrôlez vos données personnelles</p>
+        </div>
+      </div>
+      <p>Conformément aux réglementations applicables en matière de protection des données, vous disposez des droits suivants :</p>
+      <ul class="rights-list">
+        <li><span class="ri">👁️</span><div><strong>Droit d'accès</strong> — Obtenir une copie des données personnelles que nous détenons à votre sujet.</div></li>
+        <li><span class="ri">✏️</span><div><strong>Droit de rectification</strong> — Demander la correction de données inexactes ou incomplètes.</div></li>
+        <li><span class="ri">🗑️</span><div><strong>Droit à l'effacement</strong> — Demander la suppression de votre compte et de vos données personnelles.</div></li>
+        <li><span class="ri">↩️</span><div><strong>Droit de retrait du consentement</strong> — Retirer votre consentement à tout moment, sans que cela affecte la licéité des traitements antérieurs.</div></li>
+      </ul>
+      <p>Pour exercer l'un de ces droits, contactez-nous à l'adresse indiquée ci-dessous. Nous nous engageons à répondre dans un délai de <strong>30 jours</strong>.</p>
+    </div>
+
+    <!-- 6. Mineurs -->
+    <div class="section" id="mineurs">
+      <div class="section-header">
+        <div class="section-icon">👶</div>
+        <div>
+          <h2>Mineurs</h2>
+          <p class="section-sub">Protection des utilisateurs de moins de 13 ans</p>
+        </div>
+      </div>
+      <p>Notre application n'est pas destinée aux enfants de moins de 13 ans. Nous ne collectons pas sciemment de données personnelles auprès de mineurs. Si vous pensez qu'un enfant nous a fourni des informations personnelles, veuillez nous contacter afin que nous puissions les supprimer dans les meilleurs délais.</p>
+    </div>
+
+    <!-- 7. Modifications -->
+    <div class="section" id="modifications">
+      <div class="section-header">
+        <div class="section-icon">📝</div>
+        <div>
+          <h2>Modifications de cette politique</h2>
+          <p class="section-sub">Comment nous vous informons des changements</p>
+        </div>
+      </div>
+      <p>Nous nous réservons le droit de modifier cette Politique de confidentialité à tout moment. En cas de modification substantielle, nous vous en informerons via une notification dans l'application ou par e-mail.</p>
+      <p>La date de « Dernière mise à jour » en haut de cette page indique la version en vigueur. Nous vous encourageons à consulter régulièrement cette page.</p>
+    </div>
+
+    <!-- 8. Contact -->
+    <div class="contact-block" id="contact">
+      <div class="ct-text">
+        <h3>Des questions sur vos données ?</h3>
+        <p>Notre équipe est disponible pour répondre à toutes vos questions relatives à la confidentialité.</p>
+      </div>
+      <a href="mailto:espace.ouzoud@gmail.com" class="ct-btn">espace.ouzoud@gmail.com</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    © 2025 Espace Ouzoud. Tous droits réservés.<br/>
+    <a href="mailto:espace.ouzoud@gmail.com">espace.ouzoud@gmail.com</a>
+  </p>
+</footer>
+
+</body>
+</html>
