@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Suppression de compte – Espace Ouzoud</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f5f7;
+      --surface: #ffffff;
+      --ink: #1d1d1f;
+      --secondary: #6e6e73;
+      --tertiary: #86868b;
+      --accent: #0071e3;
+      --danger: #ff3b30;
+      --danger-lt: #fff2f1;
+      --border: rgba(0,0,0,.08);
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245,245,247,.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: .82rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .nav-back:hover { text-decoration: underline; }
+
+    /* HERO */
+    .hero {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 4rem 2rem 3.5rem;
+      text-align: center;
+    }
+
+    .hero-icon {
+      width: 64px; height: 64px;
+      background: var(--danger-lt);
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 600;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: .75rem;
+    }
+
+    .hero p {
+      font-size: .97rem;
+      color: var(--secondary);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* MAIN */
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 5rem;
+    }
+
+    /* INFO CARDS */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+      margin-bottom: 2rem;
+    }
+
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.1rem 1.2rem;
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+    }
+
+    .info-card .ic-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: .05rem; }
+
+    .info-card .ic-label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--tertiary);
+      margin-bottom: .2rem;
+    }
+
+    .info-card .ic-value {
+      font-size: .88rem;
+      color: var(--ink);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* FORM CARD */
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 2.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-card h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .field {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: .45rem;
+      letter-spacing: .01em;
+    }
+
+    label .required {
+      color: var(--danger);
+      margin-left: .2rem;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .75rem 1rem;
+      font-family: inherit;
+      font-size: .92rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,113,227,.12);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.55;
+    }
+
+    .hint {
+      font-size: .78rem;
+      color: var(--tertiary);
+      margin-top: .35rem;
+    }
+
+    /* CHECKBOX */
+    .checkbox-field {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      padding: 1rem;
+      background: var(--danger-lt);
+      border: 1px solid rgba(255,59,48,.15);
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+    }
+
+    .checkbox-field input[type="checkbox"] {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      margin-top: .15rem;
+      accent-color: var(--danger);
+      cursor: pointer;
+    }
+
+    .checkbox-field .cb-text {
+      font-size: .88rem;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .checkbox-field .cb-text strong { color: var(--danger); }
+
+    /* SUBMIT */
+    .btn-submit {
+      width: 100%;
+      background: var(--danger);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: .9rem 1.5rem;
+      font-family: inherit;
+      font-size: .95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity .15s, transform .1s;
+      letter-spacing: -.01em;
+    }
+
+    .btn-submit:hover { opacity: .88; }
+    .btn-submit:active { transform: scale(.99); }
+    .btn-submit:disabled { opacity: .45; cursor: not-allowed; }
+
+    /* SUCCESS STATE */
+    .success-card {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 3rem 2.25rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .success-card .s-icon {
+      width: 64px; height: 64px;
+      background: #f0faf3;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1.25rem;
+    }
+
+    .success-card h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin-bottom: .6rem;
+    }
+
+    .success-card p {
+      font-size: .92rem;
+      color: var(--secondary);
+      max-width: 360px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    .success-card .ref {
+      display: inline-block;
+      margin-top: 1.25rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .4rem .9rem;
+      font-size: .8rem;
+      color: var(--tertiary);
+      font-family: monospace;
+    }
+
+    /* NOTICE */
+    .notice {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: .9rem;
+      align-items: flex-start;
+    }
+
+    .notice .n-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .1rem; }
+
+    .notice p {
+      font-size: .85rem;
+      color: var(--secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .notice p strong { color: var(--ink); }
+
+    /* FOOTER */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      font-size: .78rem;
+      color: var(--tertiary);
+      line-height: 1.7;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 520px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 1.5rem; }
+      main { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">Espace Ouzoud</span>
+    <a href="./index.html" class="nav-back">← Politique de confidentialité</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-icon">🗑️</div>
+  <h1>Supprimer mon compte</h1>
+  <p>Vous pouvez demander la suppression définitive de votre compte et de toutes vos données personnelles associées.</p>
+</div>
+
+<main>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <span class="ic-icon">⏱️</span>
+      <div>
+        <p class="ic-label">Délai de traitement</p>
+        <p class="ic-value">Sous 30 jours</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <span class="ic-icon">🔒</span>
+      <div>
+        <p class="ic-label">Données supprimées</p>
+        <p class="ic-value">Compte, profil, historique</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <span class="ic-icon">📧</span>
+      <div>
+        <p class="ic-label">Confirmation par</p>
+        <p class="ic-value">E-mail</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <span class="ic-icon">↩️</span>
+      <div>
+        <p class="ic-label">Action irréversible</p>
+        <p class="ic-value">Non annulable après confirmation</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-card" id="formCard">
+    <h2>Formulaire de demande de suppression</h2>
+
+    <div class="field">
+      <label for="fullname">Nom complet <span class="required">*</span></label>
+      <input type="text" id="fullname" placeholder="Ex. Ahmed Benali" autocomplete="name"/>
+    </div>
+
+    <div class="field">
+      <label for="email">Adresse e-mail du compte <span class="required">*</span></label>
+      <input type="email" id="email" placeholder="Ex. ahmed@gmail.com" autocomplete="email"/>
+      <p class="hint">L'adresse utilisée lors de votre inscription sur l'application.</p>
+    </div>
+
+    <div class="field">
+      <label for="phone">Numéro de téléphone (optionnel)</label>
+      <input type="tel" id="phone" placeholder="Ex. +212 6XX XXX XXX" autocomplete="tel"/>
+    </div>
+
+    <div class="field">
+      <label for="reason">Raison de la suppression (optionnel)</label>
+      <textarea id="reason" placeholder="Dites-nous pourquoi vous souhaitez supprimer votre compte…"></textarea>
+    </div>
+
+    <label class="checkbox-field">
+      <input type="checkbox" id="confirm"/>
+      <span class="cb-text">Je comprends que cette action est <strong>définitive et irréversible</strong>. Mon compte, mon historique de commandes et toutes mes données personnelles seront supprimés.</span>
+    </label>
+
+    <button class="btn-submit" id="submitBtn" disabled onclick="handleSubmit()">
+      Envoyer la demande de suppression
+    </button>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-card" id="successCard">
+    <div class="s-icon">✅</div>
+    <h2>Demande envoyée</h2>
+    <p>Nous avons bien reçu votre demande de suppression. Vous recevrez une confirmation par e-mail et votre compte sera supprimé dans un délai de <strong>30 jours</strong>.</p>
+    <span class="ref" id="refCode"></span>
+  </div>
+
+  <div class="notice">
+    <span class="n-icon">ℹ️</span>
+    <p>Vous pouvez également envoyer votre demande directement par e-mail à <strong><a href="mailto:espace.ouzoud@gmail.com">espace.ouzoud@gmail.com</a></strong> en indiquant votre nom complet et l'adresse e-mail associée à votre compte.</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2025 Espace Ouzoud. Tous droits réservés.<br/>
+  <a href="./index.html">Politique de confidentialité</a> · <a href="mailto:espace.ouzoud@gmail.com">espace.ouzoud@gmail.com</a></p>
+</footer>
+
+<script>
+  const checkbox = document.getElementById('confirm');
+  const submitBtn = document.getElementById('submitBtn');
+
+  checkbox.addEventListener('change', () => {
+    submitBtn.disabled = !checkbox.checked;
+  });
+
+  function handleSubmit() {
+    const name    = document.getElementById('fullname').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const phone   = document.getElementById('phone').value.trim();
+    const reason  = document.getElementById('reason').value.trim();
+
+    if (!name || !email) {
+      alert('Veuillez remplir les champs obligatoires (nom et e-mail).');
+      return;
+    }
+
+    const subject = encodeURIComponent('Demande de suppression de compte – Espace Ouzoud');
+    const body = encodeURIComponent(
+      `Bonjour,\n\nJe souhaite supprimer définitivement mon compte Espace Ouzoud.\n\nNom complet : ${name}\nE-mail du compte : ${email}\nTéléphone : ${phone || 'Non renseigné'}\nRaison : ${reason || 'Non renseignée'}\n\nCordialement,\n${name}`
+    );
+
+    window.location.href = `mailto:espace.ouzoud@gmail.com?subject=${subject}&body=${body}`;
+
+    // Show success after short delay
+    setTimeout(() => {
+      document.getElementById('formCard').style.display = 'none';
+      const successCard = document.getElementById('successCard');
+      successCard.style.display = 'block';
+      const ref = 'REQ-' + Date.now().toString(36).toUpperCase();
+      document.getElementById('refCode').textContent = 'Référence : ' + ref;
+    }, 800);
+  }
+</script>
+
+</body>
+</html>
